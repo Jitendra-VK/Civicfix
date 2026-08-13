@@ -1,0 +1,46 @@
+CITIZEN
+   |
+   v
++----------------------------------+
+|     FRONTEND - REACT + VITE      |
+|                                  |
+|  Login / Register                |
+|  Citizen Dashboard               |
+|  Report Issue                    |
+|  My Reports                      |
+|  Admin Dashboard                 |
++----------------+-----------------+
+                 |
+                 v
++----------------------------------+
+|       BACKEND - FASTAPI          |
+|                                  |
+|  Authentication API              |
+|  Issue Management API             |
+|  Status Management API            |
++----------------+-----------------+
+                 |
+        +--------+--------+
+        |                 |
+        v                 v
++---------------+   +----------------+
+|   SECURITY    |   |   POSTGRESQL   |
+|               |   |    DATABASE    |
+| JWT Auth      |   |                |
+| Password      |   | Users          |
+| Hashing       |   | Issues         |
++---------------+   | Categories     |
+                    | Comments       |
+                    | Notifications  |
+                    | Status History |
+                    +----------------+
+
+ADMINISTRATOR
+      |
+      v
++-------------------+
+|  ADMIN DASHBOARD  |
++---------+---------+
+          |
+          v
+   FASTAPI BACKEND

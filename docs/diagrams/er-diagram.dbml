@@ -1,0 +1,66 @@
+Table users {
+  id integer [pk, increment]
+  name varchar(100) [not null]
+  email varchar(150) [unique, not null]
+  password varchar(255) [not null]
+  role varchar(20) [not null, default: 'citizen']
+  is_active boolean [default: true]
+  created_at timestamp
+}
+
+Table issue_categories {
+  id integer [pk, increment]
+  name varchar(100) [not null]
+  description text
+}
+
+Table issue_reports {
+  id integer [pk, increment]
+  title varchar(200) [not null]
+  description text [not null]
+  location varchar(255) [not null]
+  image_path varchar(255)
+  status varchar(30) [not null, default: 'reported']
+  user_id integer [not null]
+  category_id integer [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table comments {
+  id integer [pk, increment]
+  issue_id integer [not null]
+  user_id integer [not null]
+  comment text [not null]
+  created_at timestamp
+}
+
+Table notifications {
+  id integer [pk, increment]
+  user_id integer [not null]
+  issue_id integer
+  message text [not null]
+  is_read boolean [default: false]
+  created_at timestamp
+}
+
+Table status_history {
+  id integer [pk, increment]
+  issue_id integer [not null]
+  old_status varchar(30)
+  new_status varchar(30) [not null]
+  changed_by integer [not null]
+  created_at timestamp
+}
+
+Ref: issue_reports.user_id > users.id
+Ref: issue_reports.category_id > issue_categories.id
+
+Ref: comments.issue_id > issue_reports.id
+Ref: comments.user_id > users.id
+
+Ref: notifications.user_id > users.id
+Ref: notifications.issue_id > issue_reports.id
+
+Ref: status_history.issue_id > issue_reports.id
+Ref: status_history.changed_by > users.id

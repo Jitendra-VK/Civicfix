@@ -1,0 +1,266 @@
+.report-page {
+  min-height: 100vh;
+  background: #f5f8fc;
+  padding: 35px 7% 80px;
+}
+
+.report-header {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.back-link {
+  border: none;
+  background: transparent;
+  color: #667085;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+.report-title {
+  margin-top: 55px;
+  max-width: 650px;
+}
+
+.report-title span {
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.report-title h1 {
+  font-size: 52px;
+  letter-spacing: -2px;
+  margin: 12px 0;
+  color: #172033;
+}
+
+.report-title p {
+  color: #667085;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.report-container {
+  max-width: 1100px;
+  margin: 50px auto 0;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 35px;
+}
+
+.report-info {
+  background: #172033;
+  color: white;
+  border-radius: 22px;
+  padding: 35px;
+}
+
+.info-icon {
+  font-size: 40px;
+  margin-bottom: 25px;
+}
+
+.report-info h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.report-info > p {
+  color: #aeb8c9;
+  line-height: 1.7;
+  margin-bottom: 35px;
+}
+
+.info-item {
+  display: flex;
+  gap: 15px;
+  padding: 20px 0;
+  border-top: 1px solid #303a4c;
+}
+
+.info-item > span {
+  font-size: 23px;
+}
+
+.info-item strong {
+  font-size: 14px;
+}
+
+.info-item p {
+  color: #8e99ab;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.report-form-card {
+  background: white;
+  border-radius: 22px;
+  padding: 35px;
+  box-shadow: 0 15px 45px rgba(30, 55, 90, 0.08);
+}
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  display: block;
+  color: #344054;
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  border: 1px solid #d9dee8;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  background: white;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.upload-box {
+  border: 2px dashed #d9dee8;
+  border-radius: 12px;
+  text-align: center;
+  padding: 25px;
+  margin-bottom: 22px;
+}
+
+.upload-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.upload-box strong {
+  display: block;
+  font-size: 14px;
+}
+
+.upload-box p {
+  color: #98a2b3;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.submit-report {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 16px;
+  background: #2563eb;
+  color: white;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.submit-report:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+}
+
+/* SUCCESS */
+
+.success-card {
+  max-width: 550px;
+  margin: 100px auto;
+  padding: 50px;
+  background: white;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(30, 55, 90, 0.1);
+}
+
+.success-icon {
+  width: 75px;
+  height: 75px;
+  margin: auto;
+  border-radius: 50%;
+  background: #dcfce7;
+  color: #16a34a;
+  font-size: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-card h1 {
+  margin-top: 25px;
+  font-size: 34px;
+}
+
+.success-card > p {
+  color: #667085;
+  line-height: 1.7;
+  margin: 15px 0 25px;
+}
+
+.report-id {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  border-radius: 10px;
+  background: #f5f8fc;
+  margin-bottom: 25px;
+}
+
+.report-id span {
+  color: #667085;
+}
+
+.report-id strong {
+  color: #16a34a;
+}
+
+.back-button {
+  border: none;
+  background: #172033;
+  color: white;
+  padding: 13px 25px;
+  border-radius: 9px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 850px) {
+  .report-container {
+    grid-template-columns: 1fr;
+  }
+
+  .report-title h1 {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 500px) {
+  .report-page {
+    padding: 25px 5% 60px;
+  }
+
+  .report-form-card,
+  .report-info {
+    padding: 25px;
+  }
+}

@@ -1,0 +1,78 @@
+/* =========================
+   AUTHENTICATION
+========================= */
+
+.auth-page {
+  min-height: 100vh;
+  background: #f5f8ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.auth-card {
+  width: 420px;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
+}
+
+.auth-logo {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #2563eb;
+  margin-bottom: 30px;
+}
+
+.auth-card h1 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: #64748b;
+  margin-bottom: 30px;
+}
+
+.auth-card label {
+  display: block;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 7px;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.full {
+  width: 100%;
+  margin-top: 25px;
+}
+
+.switch-auth {
+  text-align: center;
+  margin-top: 20px;
+  color: #64748b;
+}
+
+.switch-auth button {
+  border: none;
+  background: none;
+  color: #2563eb;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.logout {
+  color: #dc2626 !important;
+}

@@ -1,0 +1,321 @@
+/* ================================
+   CIVICFIX CITIZEN DASHBOARD
+   ================================ */
+
+.dashboard-page {
+    min-height: 100vh;
+    padding: 0 40px 60px;
+    background:
+        radial-gradient(circle at 10% 10%, rgba(37, 99, 235, 0.12), transparent 28%),
+        radial-gradient(circle at 90% 20%, rgba(16, 185, 129, 0.10), transparent 25%),
+        linear-gradient(135deg, #f8fbff 0%, #eef5ff 50%, #f8fafc 100%);
+    color: #172033;
+}
+
+
+/* ================================
+   HEADER
+   ================================ */
+
+.dashboard-header {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    background: linear-gradient(90deg, #172033, #2563eb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.dashboard-header p {
+    margin: 9px 0 0;
+    color: #64748b;
+    font-size: 16px;
+}
+
+
+/* ================================
+   NAVIGATION
+   ================================ */
+
+.dashboard-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+    backdrop-filter: blur(12px);
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #475569;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 14px;
+    border-radius: 11px;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #2563eb;
+    background: #eff6ff;
+    transform: translateY(-1px);
+}
+
+.logout-btn {
+    border: none;
+    cursor: pointer;
+    background: #172033;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 17px;
+    border-radius: 11px;
+    transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(220, 38, 38, 0.25);
+}
+
+
+/* ================================
+   MAIN CONTENT
+   ================================ */
+
+.dashboard-content {
+    max-width: 1250px;
+    margin: 45px auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+
+/* ================================
+   CARDS
+   ================================ */
+
+.dashboard-card {
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.88);
+    padding: 32px;
+    border-radius: 24px;
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.06),
+        0 2px 6px rgba(15, 23, 42, 0.03);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+/* Decorative glow */
+
+.dashboard-card::before {
+    content: "";
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    right: -70px;
+    top: -70px;
+    background: rgba(37, 99, 235, 0.08);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(37, 99, 235, 0.2);
+    box-shadow:
+        0 22px 45px rgba(15, 23, 42, 0.11),
+        0 5px 12px rgba(37, 99, 235, 0.06);
+}
+
+.dashboard-card:hover::before {
+    transform: scale(1.4);
+}
+
+
+/* ================================
+   ICON
+   ================================ */
+
+.card-icon {
+    width: 62px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    border-radius: 18px;
+    font-size: 31px;
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    box-shadow: inset 0 0 0 1px rgba(37, 99, 235, 0.08);
+}
+
+
+/* ================================
+   CARD TEXT
+   ================================ */
+
+.dashboard-card h2 {
+    margin: 0 0 12px;
+    color: #172033;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.dashboard-card p {
+    margin: 0;
+    color: #64748b;
+    line-height: 1.7;
+    min-height: 82px;
+    font-size: 15px;
+}
+
+
+/* ================================
+   BUTTONS
+   ================================ */
+
+.dashboard-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 22px;
+    padding: 13px 20px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.22);
+    transition: all 0.2s ease;
+}
+
+.dashboard-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.30);
+}
+
+.dashboard-btn.secondary {
+    background: #eff6ff;
+    color: #2563eb;
+    box-shadow: none;
+    border: 1px solid #dbeafe;
+}
+
+.dashboard-btn.secondary:hover {
+    background: #dbeafe;
+}
+
+
+/* ================================
+   CARD DIFFERENTIATION
+   ================================ */
+
+.dashboard-card:nth-child(1) {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.98),
+            rgba(239, 246, 255, 0.92)
+        );
+}
+
+.dashboard-card:nth-child(2) .card-icon {
+    background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+}
+
+.dashboard-card:nth-child(3) .card-icon {
+    background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+}
+
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+
+@media (max-width: 1000px) {
+
+    .dashboard-content {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .dashboard-card:first-child {
+        grid-column: span 2;
+    }
+}
+
+
+@media (max-width: 750px) {
+
+    .dashboard-page {
+        padding: 0 20px 40px;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 22px 0;
+    }
+
+    .dashboard-nav {
+        width: 100%;
+        justify-content: space-between;
+        overflow-x: auto;
+    }
+
+    .dashboard-content {
+        grid-template-columns: 1fr;
+        margin-top: 30px;
+    }
+
+    .dashboard-card:first-child {
+        grid-column: span 1;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .dashboard-nav {
+        padding: 5px;
+    }
+
+    .nav-link {
+        padding: 9px 10px;
+        font-size: 13px;
+    }
+
+    .logout-btn {
+        padding: 9px 12px;
+        font-size: 13px;
+    }
+
+    .dashboard-card {
+        padding: 25px;
+    }
+}
