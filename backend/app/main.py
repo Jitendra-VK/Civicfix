@@ -5,11 +5,13 @@ from app.api.auth import router as auth_router
 from app.api.issues import router as issues_router
 from app.api.admin import router as admin_router
 
+
 app = FastAPI(
     title="CivicFix API",
     description="Smart Civic Reporting Platform API",
     version="1.0.0"
 )
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -22,6 +24,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 app.include_router(auth_router)
 app.include_router(issues_router)
 app.include_router(admin_router)
@@ -31,4 +34,11 @@ app.include_router(admin_router)
 def root():
     return {
         "message": "CivicFix API is running"
+    }
+
+
+@app.get("/health")
+def health_check():
+    return {
+        "status": "ok"
     }
