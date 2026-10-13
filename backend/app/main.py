@@ -1,7 +1,7 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
+from app.models.category import IssueCategory
 from app.api.auth import router as auth_router
 from app.api.issues import router as issues_router
 from app.api.admin import router as admin_router
@@ -10,6 +10,26 @@ from app.models.user import User
 from app.models.issue import IssueReport
 from app.models.category import IssueCategory
 Base.metadata.create_all(bind=engine)
+from sqlalchemy.orm import Session
+
+with Session(engine) as db:
+    default_categories = [
+        "Roads",
+        "Water Supply",
+        "Street Lights",
+        "Garbage",
+        "Drainage",
+    ]
+
+    for name in default_categories:
+        exists = db.query(IssueCategory).filter(
+            IssueCategory.name == name
+        ).first()
+
+        if not exists:
+            db.add(IssueCategory(name=name))
+
+    db.commit()
 app = FastAPI(
     title="CivicFix API",
     description="Smart Civic Reporting Platform API",
