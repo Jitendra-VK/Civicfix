@@ -6,3 +6,6 @@ python-dotenv
 python-multipart
 pydantic
 email-validator
+bcrypt
+passlib[bcrypt]
+python-jose[cryptography]
