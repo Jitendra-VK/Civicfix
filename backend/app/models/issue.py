@@ -1,3 +1,4 @@
+
 from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime
 from sqlalchemy.sql import func
 
@@ -28,6 +29,7 @@ class IssueReport(Base):
         nullable=False
     )
 
+    # Stores the uploaded image's file path
     image_path = Column(
         String(255),
         nullable=True

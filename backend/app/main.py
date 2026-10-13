@@ -1,3 +1,4 @@
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -42,3 +43,10 @@ def health_check():
     return {
         "status": "ok"
     }
+
+
+from fastapi.staticfiles import StaticFiles
+import os
+
+os.makedirs("uploads", exist_ok=True)
+app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
