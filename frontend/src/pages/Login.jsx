@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Lock, Mail, ArrowLeft, Eye, EyeOff } from "lucide-react";
+import {
+    Lock,
+    Mail,
+    ArrowLeft,
+    Eye,
+    EyeOff,
+} from "lucide-react";
 import api from "../services/api";
 import "./Auth.css";
 
@@ -10,7 +16,6 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
@@ -23,30 +28,57 @@ function Login() {
         try {
             const response = await api.post("/auth/login", {
                 email: email.trim(),
-                password: password,
+                password,
             });
+
+            const data = response.data;
+            const user = data.user;
+
+            // Debugging: inspect the returned user role.
+            // Never log or share the access token.
+            console.log("LOGIN USER:", user);
+
+            if (!data.access_token || !user) {
+                throw new Error(
+                    "The server returned an incomplete login response."
+                );
+            }
+
+            const role = String(user.role || "")
+                .trim()
+                .toLowerCase();
+
+            if (role !== "admin" && role !== "citizen") {
+                setError(
+                    "Your account role could not be verified. Please contact the administrator."
+                );
+                return;
+            }
 
             localStorage.setItem(
                 "access_token",
-                response.data.access_token
+                data.access_token
             );
 
             localStorage.setItem(
                 "user",
-                JSON.stringify(response.data.user)
+                JSON.stringify(user)
             );
 
-            if (response.data.user.role === "admin") {
-                navigate("/admin");
+            if (role === "admin") {
+                navigate("/admin", { replace: true });
             } else {
-                navigate("/dashboard");
+                navigate("/dashboard", { replace: true });
             }
-
         } catch (err) {
-            console.error("LOGIN ERROR:", err);
+            console.error(
+                "LOGIN ERROR:",
+                err.response?.data || err.message
+            );
 
             setError(
                 err.response?.data?.detail ||
+                err.message ||
                 "Login failed. Please check your email and password."
             );
         } finally {
@@ -56,30 +88,22 @@ function Login() {
 
     return (
         <div className="auth-page">
-
-            {/* TOP BRAND */}
             <div className="auth-brand">
                 <div className="brand-icon">🏙️</div>
                 <span>CivicFix</span>
             </div>
 
-            {/* BACK LINK */}
             <Link to="/" className="back-home">
                 <ArrowLeft size={18} />
                 Back to CivicFix
             </Link>
 
-            {/* RIGHT TOP TEXT */}
             <div className="community-text">
                 🛡️ Building a better community
             </div>
 
-            {/* LOGIN CARD */}
             <div className="auth-card">
-
-                <div className="auth-logo">
-                    🏙️
-                </div>
+                <div className="auth-logo">🏙️</div>
 
                 <h1>Welcome back</h1>
 
@@ -88,46 +112,47 @@ function Login() {
                 </p>
 
                 {error && (
-                    <div className="error-message">
+                    <div
+                        className="error-message"
+                        role="alert"
+                    >
                         {error}
                     </div>
                 )}
 
                 <form onSubmit={handleSubmit}>
-
-                    {/* EMAIL */}
                     <div className="auth-group">
-
-                        <label>Email Address</label>
+                        <label htmlFor="email">
+                            Email Address
+                        </label>
 
                         <div className="input-wrapper">
-
                             <Mail size={20} />
 
                             <input
+                                id="email"
                                 type="email"
                                 placeholder="you@example.com"
                                 value={email}
                                 onChange={(e) =>
                                     setEmail(e.target.value)
                                 }
+                                autoComplete="email"
                                 required
                             />
-
                         </div>
-
                     </div>
 
-                    {/* PASSWORD */}
                     <div className="auth-group">
-
-                        <label>Password</label>
+                        <label htmlFor="password">
+                            Password
+                        </label>
 
                         <div className="input-wrapper">
-
                             <Lock size={20} />
 
                             <input
+                                id="password"
                                 type={
                                     showPassword
                                         ? "text"
@@ -138,6 +163,7 @@ function Login() {
                                 onChange={(e) =>
                                     setPassword(e.target.value)
                                 }
+                                autoComplete="current-password"
                                 required
                             />
 
@@ -145,7 +171,12 @@ function Login() {
                                 type="button"
                                 className="password-toggle"
                                 onClick={() =>
-                                    setShowPassword(!showPassword)
+                                    setShowPassword((previous) => !previous)
+                                }
+                                aria-label={
+                                    showPassword
+                                        ? "Hide password"
+                                        : "Show password"
                                 }
                             >
                                 {showPassword ? (
@@ -154,12 +185,9 @@ function Login() {
                                     <Eye size={20} />
                                 )}
                             </button>
-
                         </div>
-
                     </div>
 
-                    {/* LOGIN BUTTON */}
                     <button
                         type="submit"
                         className="auth-button"
@@ -169,26 +197,21 @@ function Login() {
                             ? "Signing in..."
                             : "Sign In"}
                     </button>
-
                 </form>
 
-                {/* DIVIDER */}
                 <div className="auth-divider">
                     <span></span>
                     <p>OR</p>
                     <span></span>
                 </div>
 
-                {/* REGISTER */}
                 <p className="auth-footer">
                     Don't have an account?{" "}
                     <Link to="/register">
                         Create one
                     </Link>
                 </p>
-
             </div>
-
         </div>
     );
 }
