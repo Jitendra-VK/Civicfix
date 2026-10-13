@@ -9,18 +9,13 @@ from app.database.database import Base, engine
 from app.models.user import User
 from app.models.issue import IssueReport
 from app.models.category import IssueCategory
-
+Base.metadata.create_all(bind=engine)
 app = FastAPI(
     title="CivicFix API",
     description="Smart Civic Reporting Platform API",
     version="1.0.0"
 )
-from app.database.database import Base, engine
-from app.models.user import User
-from app.models.issue import IssueReport
-from app.models.issue_category import IssueCategory
 
-Base.metadata.create_all(bind=engine)
 
 app.add_middleware(
     CORSMiddleware,
