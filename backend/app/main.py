@@ -5,7 +5,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.auth import router as auth_router
 from app.api.issues import router as issues_router
 from app.api.admin import router as admin_router
-
+from app.database.database import Base, engine
+from app.models.user import User
+from app.models.issue import IssueReport
+from app.models.category import IssueCategory
 
 app = FastAPI(
     title="CivicFix API",
