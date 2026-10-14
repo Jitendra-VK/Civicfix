@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, ConfigDict
 
 
 class RegisterRequest(BaseModel):
@@ -7,43 +7,19 @@ class RegisterRequest(BaseModel):
     password: str
 
 
-class UserResponse(BaseModel):
-    id: int
-    name: str
-    email: str
-    role: str
-
-    class Config:
-        from_attributes = True
-
-
-class TokenResponse(BaseModel):
-    access_token: str
-    token_type: str
-    user: UserResponse
-from pydantic import BaseModel
-
-
-class RegisterRequest(BaseModel):
-    name: str
-    email: str
-    password: str
-
-
 class LoginRequest(BaseModel):
-    email: str
+    email: EmailStr
     password: str
 
 
 class UserResponse(BaseModel):
     id: int
     name: str
-    email: str
+    email: EmailStr
     role: str
     is_active: bool
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class TokenResponse(BaseModel):
