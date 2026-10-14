@@ -3,14 +3,12 @@ from sqlalchemy.orm import Session
 
 from app.database.database import get_db
 from app.models.user import User
-
 from app.schemas.auth import (
     RegisterRequest,
     LoginRequest,
     TokenResponse,
     UserResponse,
 )
-
 from app.services.security import (
     create_access_token,
     hash_password,
@@ -22,10 +20,6 @@ router = APIRouter(
     tags=["Authentication"],
 )
 
-
-# =========================
-# REGISTER
-# =========================
 
 @router.post(
     "/register",
@@ -60,10 +54,6 @@ def register(
     return user
 
 
-# =========================
-# LOGIN
-# =========================
-
 @router.post(
     "/login",
     response_model=TokenResponse,
@@ -73,7 +63,7 @@ def login(
     db: Session = Depends(get_db),
 ):
     user = db.query(User).filter(
-        User.email == data.email
+        User.email == data.email.strip().lower()
     ).first()
 
     if not user or not verify_password(
@@ -90,14 +80,6 @@ def login(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="User account is inactive",
         )
-
-    # Promote the designated admin account after
-    # successful password verification.
-    if user.email.lower() == "admin@civicfix.com":
-        if user.role != "admin":
-            user.role = "admin"
-            db.commit()
-            db.refresh(user)
 
     token = create_access_token(
         user.id,
